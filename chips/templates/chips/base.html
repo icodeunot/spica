@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Spica{% endblock %}</title>
+
+    <!-- Favicon details -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+
+    <!-- HTMX CDN-->
+    <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+
+    <!-- Tainwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Alpine.js CDN -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <!-- Hide elements with x-cloak -->
+    <style>[x-cloak] { display: none !important; }</style>
+
+    {% block head_extra %}{% endblock %}
+</head>
+
+<body 
+    x-data="{ openModal: false }"
+    x-bind:class="openModal && 'overflow-auto'"
+    @popstate.window="openModal = false"
+    class="bd-gray-100 text-gray-900 font-sans"
+>
+    <main class="container mx-auto px-4 py-8">
+        {% block content %}{% endblock %}
+    </main>
+ 
+    <!-- Modal Overlay -->
+    <div
+        x-show="openModal"
+        x-cloak
+        @htmx:afterOnLoad.window="
+            if (event.detail.pathInfo.requestPath.startsWith('/day/')) {
+                openModal = true;
+            }
+        "
+        @keydown.escape.window="openModal = false; history.pushState({}, '', '/')"
+        @popstate.window="openModal = false"
+        class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center"
+    >
+        <!-- Modal Content -->
+        <div
+            class="bg-white p-4 w-full sm:w-4/5 md:w-3/4 h-[80vh] sm:h-[70vh] md:h-[50vh] rounded shadow overflow-auto relative"
+            x-on:click.outside="openModal = false; history.pushState({}, '', '/')"
+        >
+            <button
+                @click="openModal = false; history.pushState({}, '', '/')"
+                class="absolute top-2 right-2 text-gray-600 hover:text-black text-xl font-bold"
+            >x</button>
+            <div id="modal-content"></div>
+        </div>
+    </div>
+    
+    {% block scripts %}{% endblock %}
+</body>
+</html>

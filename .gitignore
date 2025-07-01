@@ -1,0 +1,19 @@
+# Django stuff:
+*.pyc
+__pycache__/
+db.sqlite3
+
+# Environment variables:
+.env
+
+# Virtual environments:
+venv/
+env/
+.spica-env/
+spica-env/
+
+# VSCode:
+.vscode/
+
+# PythonAnywhere cache and static stuff (optional)
+staticfiles/
