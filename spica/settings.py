@@ -25,13 +25,11 @@ sys.path.append(str(BASE_DIR))
 # These were sent to the .env and .gitignore
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'dev-secret-key')
 DEBUG = os.getenv('DJANGO_DEBUG', 'True') == 'True'
-<<<<<<< HEAD
-ALLOWED_HOSTS = ['laziestj.pythonanywhere.com']
 
-=======
-ALLOWED_HOSTS = []
->>>>>>> 94207191d970d6e12c7e3e3eb2fed469df3e8184
-
+ALLOWED_HOSTS = [
+    '127.0.0.1', 
+    'laziestj.pythonanywhere.com',
+]
 
 
 # Application definition
