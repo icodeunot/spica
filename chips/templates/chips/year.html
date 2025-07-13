@@ -16,7 +16,7 @@
                     {% for day, weekday in days %}
                         <div 
                             class="p-2 border border-gray-700 rounded hover:bg-green-400 text-center cursor-pointer"
-                            hx-get="{% url 'day_detail' year=year month=month_num day=day %}"
+                            hx-get="{% url 'chips:day_detail' year=year month=month_num day=day %}"
                             hx-select="#post-content"
                             hx-target="#modal-content"
                             hx-push-url="true"

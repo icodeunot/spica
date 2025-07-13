@@ -33,7 +33,42 @@
     @popstate.window="openModal = false"
     class="bd-gray-100 text-gray-900 font-sans"
 >
-    <main class="container mx-auto px-4 py-8">
+
+    <!-- Header with Menu -->
+    <header class="flex items-center justify-between px-4 py-3 bg-green-700 text-white shadow">
+        <h1 class="text-xl font-bold tracking-wide">Spica</h1>
+
+        <!-- Menu Icon -->
+        <div x-data="{ showMenu: false }" class="relative">
+            <button
+                @click="showMenu = !showMenu"
+                class="focus:outline-none"
+            >
+                <!-- Hamburger Icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" 
+                    viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+
+            <!-- Dropdown -->
+            <div 
+                x-show="showMenu"
+                x-cloak
+                @click.outside="showMenu = false"
+                class="absolute right-0 mt-2 w-48 bg-white text-black rounded shadow-md z-50"
+            >
+                <a href="#" class="block px-4 py-2 hover:bg-gray-200">Add Category</a>        
+                <a href="#" class="block px-4 py-2 hover:bg-gray-200">Set Savings Goal</a>    
+                <a href="#" class="block px-4 py-2 hover:bg-gray-200">Alert Options</a>    
+                <a href="#" class="block px-4 py-2 hover:bg-gray-200">Connect Banking Account</a>    
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8 mt-6">
         {% block content %}{% endblock %}
     </main>
  
@@ -57,7 +92,7 @@
         >
             <button
                 @click="openModal = false; history.pushState({}, '', '/')"
-                class="absolute top-2 right-2 text-gray-600 hover:text-black text-xl font-bold"
+                class="absolute top-3 right-7 text-gray-600 hover:text-black text-xl font-bold"
             >x</button>
             <div id="modal-content"></div>
         </div>

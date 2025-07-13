@@ -25,8 +25,12 @@ sys.path.append(str(BASE_DIR))
 # These were sent to the .env and .gitignore
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'dev-secret-key')
 DEBUG = os.getenv('DJANGO_DEBUG', 'True') == 'True'
+<<<<<<< HEAD
 ALLOWED_HOSTS = ['laziestj.pythonanywhere.com']
 
+=======
+ALLOWED_HOSTS = []
+>>>>>>> 94207191d970d6e12c7e3e3eb2fed469df3e8184
 
 
 
@@ -124,3 +128,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
